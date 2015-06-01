@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic Web TWAIN Demo</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en-us" charset="utf-8" />
+    <link rel="stylesheet" href="Styles/style.css" />
+    <script src="Scripts/jquery.js"></script>
+</head>
+<body>
+
+<div id="container" class="body_Broad_width" style="margin:0 auto;">
+
+<!-- header -->
+<div class="DWTHeader">
+    <div class="body_Broad_width" style="background-image:url('Images/adtopbackground.gif'); height:88px; width:987px; ">
+	<div style="float: left; padding-top: 25px; width: 525px; margin-left: 25px;">
+	<span><a href="http://www.dynamsoft.com/"><img src="Images/logo.gif" alt="Dynamsoft: provider of version control solution and TWAIN SDK" style="padding: 6px 0 0;" name="logo" border="0" align="left" id="logo" title="Dynamsoft: provider of version control solution and TWAIN SDK"></a></span>
+	<span style="border-left:1px solid #CCC;margin: 0 0 0 10px;padding: 40px 0 0 10px;"><a href="http://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx"><img alt="DynamicWebTWAIN logo" style="border:none; " src="Images/DWT icon logo.png" /></a></span>
+	<span style="padding-left: 15px; color: #333; font-family: arial, sans-serif; font-size: 30px; ">Demo</span>
+	</div>
+	</div>
+	<div id="menu">
+		<ul>
+			<li style="float:left; width:30px; height:40px; line-height:40px; color:#FFF;"></li>
+			<li class="D_menu_item" style="width:280px"><div class="menubar_split" ></div><div class="menubar_split_last"></div><a class="nohref" href="http://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx"  target="_blank">Sample Gallery</a></li><li style="float:left; width:420px;color:#FFF;"></li>
+		</ul>
+	</div>
+</div>
+
+<!-- main body -->
+<div id="DWTcontainer" class="body_Broad_width" style="height:900px;background:#FFF">
+
+<div class="Content_Left">
+	<div id="dwtcontrolContainer"></div>
+	<div id="DWTNonInstallContainerID" style="width:580px"></div>
+	<div id="DWTemessageContainer" style="clear: both;width:580px;margin: 10px 0 0 52px;"></div>
+</div>
+<div class="Content_Right">
+
+<div id="ScanWrapper">
+<div id="divScanner" class="divinput">
+    <ul class="PCollapse">
+        <li>
+        <div class="divType"><div class="mark_arrow expanded"></div>Custom Scan</div>
+            <div id="div_ScanImage" class="divTableStyle">
+                <ul id="ulScaneImageHIDE" >
+                    <li style="padding-left: 15px;">
+                        <label for="source">Select Source:</label>
+                        <select size="1" id="source" style="position:relative;width: 220px;" onchange="source_onchange()">
+                            <option value = ""></option>    
+                        </select></li>
+                         <li style="display:none;position:relative" id="pNoScanner">
+                            <a href="javascript:;" class="ShowtblLoadImage" style="color:red; background-color:#f0f0f0; position:relative" id="aNoScanner"><b>No TWAIN compatible drivers detected.</b></a>
+
+<div id="tblLoadImage" style="display:none;height:80px">
+<ul>
+    <li><b>You can:</b><a href="javascript: void(0)" style="text-decoration:none; padding-left:200px" class="ClosetblLoadImage">X</a></li>
+</ul>
+<div id="notformac1" style="background-color:#f0f0f0; padding:5px;">
+<ul>
+    <li><img alt="arrow" src="Images/arrow.gif" width="9" height="12"/><b>Install a Virtual Scanner:</b></li>
+    <li style="text-align:center;"><a id="samplesource32bit" href="http://www.dynamsoft.com/demo/DWT/Sources/twainds.win32.installer.2.1.3.msi">32-bit Sample Source</a>
+        <a id="samplesource64bit" style="display:none;" href="http://www.dynamsoft.com/demo/DWT/Sources/twainds.win64.installer.2.1.3.msi">64-bit Sample Source</a>
+        from <a href="http://www.twain.org">TWG</a></li>
+</ul>
+</div>
+</div>
+						
+						
+						</li>
+                        <li id="divProductDetail"></li>
+						<li style="text-align:center;">
+                        <input id="btnScan" class="bigbutton" style="color:#C0C0C0;" disabled="disabled" type="button" value="Scan" onclick ="acquireImage();"/></li>
+                </ul>
+            </div>
+        </li>  
+        <li>
+        <div class="divType"><div class="mark_arrow collapsed"></div>Load the Sample Images</div>
+        <div id="div_SampleImage" style="display: none" class="divTableStyle">
+            <ul>
+                <li><b>Samples:</b></li>
+                <li style="text-align: center;">
+                    <table style="border-spacing: 2px; width: 100%;">
+                        <tr>
+                             <td style="width: 33%">
+                                <input name="SampleImage3" type="image" src="Images/icon_associate3.png" style="width: 50px;
+                                    height: 50px" onclick="loadSampleImage(3);" onmouseover="Over_Out_DemoImage(this,'Images/icon_associate3.png');"
+                                    onmouseout="Over_Out_DemoImage(this,'Images/icon_associate3.png');" />
+                            </td>
+                            <td style="width: 33%">
+                                <input name="SampleImage2" type="image" src="Images/icon_associate2.png" style="width: 50px;
+                                    height: 50px" onclick="loadSampleImage(2);" onmouseover="Over_Out_DemoImage(this,'Images/icon_associate2.png');"
+                                    onmouseout="Over_Out_DemoImage(this,'Images/icon_associate2.png');" />
+                            </td>
+                            <td style="width: 33%">
+                                <input name="SampleImage1" type="image" src="Images/icon_associate1.png" style="width: 50px;
+                                    height: 50px" onclick="loadSampleImage(1);" onmouseover="Over_Out_DemoImage(this,'Images/icon_associate1.png');"
+                                    onmouseout="Over_Out_DemoImage(this,'Images/icon_associate1.png');" />
+                            </td>
+                           
+                        </tr>
+                        <tr>
+                            <td>
+                                B&W Image
+                            </td>
+                            <td>
+                                Grey Image
+                            </td>
+                             <td>
+                                Color Image
+                            </td>                         
+                        </tr>
+                    </table>                 
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li>
+        <div class="divType"><div class="mark_arrow collapsed"></div>Load a Local Image</div>
+        <div id="div_LoadLocalImage" style="display: none" class="divTableStyle">
+            <ul>
+                <li style="text-align: center; height:35px; padding-top:8px;">
+                    <input type="button" value="Load Image" style="width: 130px; height:30px; font-size:medium;" onclick="return btnLoad_onclick()" />
+                </li>
+            </ul>
+        </div>
+    </li>
+   
+    </ul>
+
+</div>
+
+<!-- ***************************  Microsoft Azure *************************** -->
+<div id="divUpload" class="divinput" style="position:relative">
+<ul>
+    <li><img alt="arrow" src="Images/arrow.gif" width="9" height="12"/><b>Upload Image to Azure Server (PDF)</b></li>
+    <li style="padding-left:9px;">
+        <label for="txt_fileName">File Name: <input type="text" size="20" id="txt_fileName" /></label></li>
+	<li style="text-align: center">
+		<input id="btnUploadAzure" type="button" value="Upload" onclick ="btnUploadAzure_onclick()"/>
+	</li>
+</ul>
+</div>
+<!-- ***************************  Microsoft Azure *************************** -->
+
+
+<div id="divBlank" style="height:20px">&nbsp;</div>
+
+<div id ="divEdit" class="divinput" style="position:relative;display:none">
+<ul>
+    <li><img alt="arrow" src="Images/arrow.gif" width="9" height="12"/><b>Edit Image</b></li>
+    <li style="padding-left:9px;">
+	<img src="images/ShowEditor.png" title= "Show Image Editor" alt="Show Image Editor" onclick="btnShowImageEditor_onclick()"/>
+    <img src="images/RotateLeft.png" title="Rotate Left" alt="Rotate Left" onclick="btnRotateLeft_onclick()"/>
+    <img src="images/RotateRight.png" title="Rotate Right" alt="Rotate Right" onclick="btnRotateRight_onclick()"/>
+	<img src="images/rotate180.png" alt="Rotate 180" title="Rotate 180" onclick="btnRotate180_onclick()" />
+    <img src="images/Mirror.png" title="Mirror" alt="Mirror" onclick="btnMirror_onclick()"/>
+    <img src="images/Flip.png" title="Flip" alt="Flip" onclick="btnFlip_onclick()"/>
+    <img src="images/ChangeSize.png" title="Change Image Size" alt="Change Image Size" onclick="btnChangeImageSize_onclick(this);"/>
+
+	</li>
+</ul>
+
+</div>
+
+
+
+<div id="divSave" class="divinput" style="position:relative;display:none">
+<ul>
+    <li><img alt="arrow" src="Images/arrow.gif" width="9" height="12"/><b>Save Image to Local Disk</b></li>
+    <li style="padding-left:15px;">
+        <label for="txt_fileNameforSave">File Name: <input type="text" size="20" id="txt_fileNameforSave"/></label></li>	
+    <li style="padding-left:12px;">
+        <label for="imgTypebmp">
+            <input type="radio" value="bmp" name="imgType_save" id="imgTypebmp" onclick ="rdsave_onclick();"/>BMP</label>
+	    <label for="imgTypejpeg">
+		    <input type="radio" value="jpg" name="imgType_save" id="imgTypejpeg" onclick ="rdsave_onclick();"/>JPEG</label>
+	    <label for="imgTypetiff">
+		    <input type="radio" value="tif" name="imgType_save" id="imgTypetiff" onclick ="rdTIFFsave_onclick();"/>TIFF</label>
+	    <label for="imgTypepng">
+		    <input type="radio" value="png" name="imgType_save" id="imgTypepng" onclick ="rdsave_onclick();"/>PNG</label>
+	    <label for="imgTypepdf">
+		    <input type="radio" value="pdf" name="imgType_save" id="imgTypepdf" onclick ="rdPDFsave_onclick();"/>PDF</label></li>
+    <li style="padding-left:12px;">
+        <label for="MultiPageTIFF_save"><input type="checkbox" id="MultiPageTIFF_save"/>Multi-Page TIFF</label>
+        <label for="MultiPagePDF_save"><input type="checkbox" id="MultiPagePDF_save"/>Multi-Page PDF </label></li>
+    <li style="text-align: center">
+        <input id="btnSave" type="button" value="Save Image" onclick ="btnSave_onclick()"/></li>
+	
+</ul>
+</div>
+
+	
+<div id="divUpgrade" style="display:none"></div>
+
+</div>
+</div>
+
+
+<div id="J_waiting" class="D-dialog ks-dialog-hidden">
+	<div class="ks-dialog-header"></div>
+	<div class="ks-dialog-body">
+		<div class="ks-dialog-content" id="InstallBody"></div>
+	</div>
+	<div class="ks-dialog-footer"></div>
+</div>
+</div>
+
+
+<!-- tail -->
+<div class="DWTTail">
+    <div class="body_Broad_width" style="height:4px; background-color:#303030"></div><div class="body_Broad_width" style="height:6px; background-color:#ff8e13"></div><br /><div style="width:10px; height:85px;float:right; border:0px; padding:0px;"><img alt = "&gt;" src="Images/bottomright.gif"/></div><div class="body_Narrow_width" style="font-size:larger; z-index:100; position:relative;height:85px; border:0px; padding:0px; float:right; text-align:center; background-image: url(Images/bottommid.gif); background-repeat:repeat;"><br /> <a class="fontcolor" href="http://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx" style="cursor:text">TWAIN SDK</a> Powered By Dynamsoft<br />Version control hosting powered by <a target="_blank" style=" color:#FE8E14" href="http://www.dynamsoft.com/Products/SAWHosted_Plan.aspx">SourceAnywhere Hosted</a></div><div style="width:10px; height:85px;float:right; border:0px; padding:0px;"><img alt = "&gt;" src="Images/bottomleft.gif"/></div>
+</div>
+
+</div>
+
+
+<script src="Resources/dynamsoft.webtwain.config.js?t=20150526"></script>
+<script src="Resources/dynamsoft.webtwain.initiate.js?t=20150526"></script>
+<script src="Scripts/online_demo_initpage.js?t=20150526"></script>
+<script src="Scripts/online_demo_operation.js?t=20150526"></script>
+<script>
+    $("ul.PCollapse li>div").click(function() {
+        if ($(this).next().css("display") == "none") {
+            $(".divType").next().hide("normal");
+            $(".divType").children(".mark_arrow").removeClass("expanded");
+            $(".divType").children(".mark_arrow").addClass("collapsed");
+            $(this).next().show("normal");
+            $(this).children(".mark_arrow").removeClass("collapsed");
+            $(this).children(".mark_arrow").addClass("expanded");
+        }
+    });
+	KISSY.use(['node', 'dom', 'event'], function(S, Node, DOM, Event){
+
+	});
+
+</script>
+
+</body>
+</html>
+
